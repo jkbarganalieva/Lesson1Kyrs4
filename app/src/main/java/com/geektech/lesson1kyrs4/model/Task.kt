@@ -1,4 +1,4 @@
-package com.geektech.lesson1kyrs4
+package com.geektech.lesson1kyrs4.model
 
 data class Task(
     var title:String?=null,
