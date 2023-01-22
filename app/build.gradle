@@ -55,4 +55,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 //indicator circle
     implementation 'me.relex:circleindicator:2.1.6'
+
+    //build.gradle.compile 'de.hdodenhof:circleimageview:2.1.0'
+
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 }

@@ -8,4 +8,7 @@
     <string name="save">Save</string>
     <string name="profile">Profile</string>
     <string name="get_started">get_started</string>
+    <string name="savetopref">SaveToPref</string>
+    <string name="saveToPref" />
+    <string name="saveToProfile">Save</string>
 </resources>
