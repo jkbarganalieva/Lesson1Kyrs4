@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -33,6 +34,12 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+   // allprojects {
+//        repositories {
+//            maven { url 'https://jitpack.io' }
+//        }
+   // }
 }
 
 dependencies {
@@ -59,4 +66,16 @@ dependencies {
     //build.gradle.compile 'de.hdodenhof:circleimageview:2.1.0'
 
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+//roomDataBase
+    def room_version = "2.5.0"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //alert dialog
+    //implementation 'com.github.hasanaga:FlexibleAlertDialog:0.0.2'
+
 }

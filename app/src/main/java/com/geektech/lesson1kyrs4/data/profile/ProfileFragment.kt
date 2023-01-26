@@ -1,4 +1,4 @@
-package com.geektech.lesson1kyrs4.ui.profile
+package com.geektech.lesson1kyrs4.data.profile
 
 import android.app.Activity
 import android.content.Intent

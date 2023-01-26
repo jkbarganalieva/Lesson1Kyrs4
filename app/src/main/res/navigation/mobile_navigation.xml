@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.geektech.lesson1kyrs4.ui.profile.ProfileFragment"
+        android:name="com.geektech.lesson1kyrs4.data.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
