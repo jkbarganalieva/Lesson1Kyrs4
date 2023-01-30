@@ -5,26 +5,31 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.geektech.lesson1kyrs4.R
 import com.geektech.lesson1kyrs4.databinding.ItemOnboardingBinding
 import com.geektech.lesson1kyrs4.model.OnBoard
 import com.geektech.lesson1kyrs4.utils.loadImage
 
-class OnBoardingAdapter(private val onClick:()->Unit) : Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
+class OnBoardingAdapter(private val onClick: () -> Unit) :
+    Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
     private val data = arrayListOf(
         OnBoard(
             "Минеральная вода",
-            "Укрепит иммунитет" ,
-            "https://kajmak.ru/upload/iblock/139/139eb9ab535989633dbcca48ad5964b2.jpg"
+            "Укрепит иммунитет",
+            R.raw.baby
+//            "https://kajmak.ru/upload/iblock/139/139eb9ab535989633dbcca48ad5964b2.jpg"
         ),
         OnBoard(
             "Тан",
             "Когда болит голова)",
-            "https://irecommend.ru/sites/default/files/product-images/85567/CcCT1fqzrEoHhPKrOLWysg.jpg"
+            R.raw.maintenance
+//            "https://irecommend.ru/sites/default/files/product-images/85567/CcCT1fqzrEoHhPKrOLWysg.jpg"
         ),
         OnBoard(
             "Шоро",
             "Богат витаминами и минералами",
-            "https://dastarkhan24.kz/upload/iblock/a1c/a1c81d923d3f6ec755690eb37c7b0985.jpg"
+            R.raw.sand_clock
+//            "https://dastarkhan24.kz/upload/iblock/a1c/a1c81d923d3f6ec755690eb37c7b0985.jpg"
         ),
     )
 
@@ -45,15 +50,15 @@ class OnBoardingAdapter(private val onClick:()->Unit) : Adapter<OnBoardingAdapte
     inner class OnBoardingViewHolder(private val binding: ItemOnboardingBinding) :
         ViewHolder(binding.root) {
         fun bind(onBoard: OnBoard) {
+            binding.image.setAnimation(onBoard.image!!)
             binding.tvTitle.text = onBoard.title
             binding.tvDesc.text = onBoard.desc
-            binding.image.loadImage(onBoard.image.toString())
-            binding.btnStart.isVisible = adapterPosition==data.lastIndex
+
+            //binding.image.loadImage(onBoard.image.toString())
+            binding.btnStart.isVisible = adapterPosition == data.lastIndex
             binding.btnStart.setOnClickListener {
                 onClick()
             }
         }
-
-
     }
 }

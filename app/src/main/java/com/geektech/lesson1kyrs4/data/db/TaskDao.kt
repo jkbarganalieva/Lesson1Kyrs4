@@ -3,12 +3,11 @@ package com.geektech.lesson1kyrs4.data.db
 import androidx.room.*
 import com.geektech.lesson1kyrs4.model.Task
 
-
 @Dao
 interface TaskDao {
 
     @Query("SELECT*FROM task")
-    fun getAll():List<Task>
+    fun getAll(): List<Task>
 
     @Insert
     fun insert(task: Task)

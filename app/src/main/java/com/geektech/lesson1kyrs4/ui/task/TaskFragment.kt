@@ -14,7 +14,6 @@ import com.geektech.lesson1kyrs4.databinding.FragmentTaskBinding
 
 
 class TaskFragment : Fragment() {
-
     private lateinit var binding: FragmentTaskBinding
 
     override fun onCreateView(
@@ -36,8 +35,6 @@ class TaskFragment : Fragment() {
             )
             findNavController().navigateUp()
         }
-
-       // binding.
     }
 
     companion object {

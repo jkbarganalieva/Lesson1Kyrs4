@@ -19,12 +19,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pref1: Pref
     private lateinit var pref2: Pref
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pref=Pref(this)
-        pref1=Pref(this)
-        pref2=Pref(this)
+        pref = Pref(this)
+        pref1 = Pref(this)
+        pref2 = Pref(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

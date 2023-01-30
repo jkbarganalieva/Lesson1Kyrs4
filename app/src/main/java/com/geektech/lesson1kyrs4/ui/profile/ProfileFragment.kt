@@ -1,4 +1,4 @@
-package com.geektech.lesson1kyrs4.data.profile
+package com.geektech.lesson1kyrs4.ui.profile
 
 import android.app.Activity
 import android.content.Intent
@@ -72,7 +72,7 @@ class ProfileFragment : Fragment() {
         ) {
             val photoUri: Uri? = result.data?.data
             pref.saveImage(photoUri.toString())
-            binding.circleIv.loadImage(photoUri.toString())
+           binding.circleIv.loadImage(photoUri.toString())
         }
     }
 
