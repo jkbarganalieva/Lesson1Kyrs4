@@ -38,4 +38,21 @@
         android:name="com.geektech.lesson1kyrs4.ui.onBoarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" />
+    <fragment
+        android:id="@+id/acceptFragment"
+        android:name="com.geektech.lesson1kyrs4.ui.accept.AcceptFragment"
+        android:label="fragment_accept"
+        tools:layout="@layout/fragment_accept">
+        <argument android:name="verId"
+            app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.geektech.lesson1kyrs4.ui.auth.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_authfragment_to_acceptfragment2"
+            app:destination="@id/acceptFragment" />
+    </fragment>
 </navigation>

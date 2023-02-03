@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.geektech.lesson1kyrs4.data.Pref
 import com.geektech.lesson1kyrs4.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pref: Pref
     private lateinit var pref1: Pref
     private lateinit var pref2: Pref
+    private var auth=FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         //
         if (!pref.isUserSeen())
             navController.navigate(R.id.onBoardingFragment)
+
+        if (auth.currentUser==null){
+            navController.navigate(R.id.authFragment)
+
+        }
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
