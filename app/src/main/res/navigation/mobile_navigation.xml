@@ -55,4 +55,9 @@
             android:id="@+id/action_authfragment_to_acceptfragment2"
             app:destination="@id/acceptFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.geektech.lesson1kyrs4.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
 </navigation>

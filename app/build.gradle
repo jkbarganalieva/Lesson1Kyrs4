@@ -11,6 +11,7 @@ android {
     namespace 'com.geektech.lesson1kyrs4'
     compileSdk 33
 
+
     defaultConfig {
         applicationId "com.geektech.lesson1kyrs4"
         minSdk 24
@@ -34,7 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
+    buildFeatures{
         viewBinding true
     }
 
@@ -61,8 +62,6 @@ dependencies {
 //indicator circle
     implementation 'me.relex:circleindicator:2.1.6'
 
-    //build.gradle.compile 'de.hdodenhof:circleimageview:2.1.0'
-
     implementation 'de.hdodenhof:circleimageview:2.1.0'
 //roomDataBase
     def room_version = "2.5.0"
@@ -80,6 +79,7 @@ dependencies {
     //implementation "com.airbnb.android:lottie:$lottieVersion"
 
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.2'
 
   
 }

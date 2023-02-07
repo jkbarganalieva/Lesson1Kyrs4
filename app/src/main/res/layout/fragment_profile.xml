@@ -71,8 +71,16 @@
             android:maxLines="2" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="exit"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_savepref"
+        app:layout_constraintTop_toBottomOf="@id/ageContainer" />
 
     <Button
         android:id="@+id/btn_savepref"

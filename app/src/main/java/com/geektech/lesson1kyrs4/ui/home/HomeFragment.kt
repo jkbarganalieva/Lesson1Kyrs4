@@ -2,6 +2,7 @@ package com.geektech.lesson1kyrs4.ui.home
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,16 @@ import com.geektech.lesson1kyrs4.R
 import com.geektech.lesson1kyrs4.model.Task
 import com.geektech.lesson1kyrs4.databinding.FragmentHomeBinding
 import com.geektech.lesson1kyrs4.ui.home.adapter.TaskAdapter
+import com.geektech.lesson1kyrs4.utils.isOnline
 import com.geektech.lesson1kyrs4.utils.showToast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var adapter: TaskAdapter
+    private val db = Firebase.firestore
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,11 +44,30 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (requireContext().isOnline()){
+          val tasks=getTasks()
+        }else{
+            setData()
+        }
         binding.recyclerView.adapter = adapter
         setData()
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.taskFragment)
         }
+    }
+
+    private fun getTasks(): ArrayList<Task> {
+        val uid=FirebaseAuth.getInstance().currentUser?.uid
+        val tasks= arrayListOf<Task>()
+        if (uid!=null){
+            db.collection(uid).get().addOnSuccessListener {
+               //здесь может быть проблема !!!!
+                val data=it.toObjects(Task::class.java)
+                tasks.addAll(data)
+                Log.e("ololo", "getTasks: $data")
+            }.addOnFailureListener {}
+        }
+        return tasks
     }
 
     private fun setData() {

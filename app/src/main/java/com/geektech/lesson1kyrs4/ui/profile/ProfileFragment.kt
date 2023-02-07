@@ -11,9 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.findNavController
+import com.geektech.lesson1kyrs4.R
 import com.geektech.lesson1kyrs4.data.Pref
 import com.geektech.lesson1kyrs4.databinding.FragmentProfileBinding
 import com.geektech.lesson1kyrs4.utils.loadImage
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfileFragment : Fragment() {
@@ -25,6 +28,7 @@ class ProfileFragment : Fragment() {
     private lateinit var pref: Pref
     private lateinit var pref1: Pref
     private lateinit var pref2: Pref
+    private var auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +36,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +56,15 @@ class ProfileFragment : Fragment() {
         binding.circleIv.setOnClickListener {
             createIntent()
         }
+        binding.btnExit.setOnClickListener {
+
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.onBoardingFragment)
+            auth.currentUser == null
+            findNavController().navigate(R.id.authFragment)
+        }
     }
+
 
     private fun createIntent() {
         val intent =
@@ -72,7 +83,7 @@ class ProfileFragment : Fragment() {
         ) {
             val photoUri: Uri? = result.data?.data
             pref.saveImage(photoUri.toString())
-           binding.circleIv.loadImage(photoUri.toString())
+            binding.circleIv.loadImage(photoUri.toString())
         }
     }
 
