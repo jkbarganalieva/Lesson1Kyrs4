@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.geektech.lesson1kyrs4.model.Task
 import com.geektech.lesson1kyrs4.databinding.ItemTaskBinding
 
-class TaskAdapter(private val deleteClick: (Task) -> Unit) : Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val onClick: (Task) -> Unit) : Adapter<TaskAdapter.TaskViewHolder>() {
 
     private val data = arrayListOf<Task>()
 
@@ -46,13 +46,17 @@ class TaskAdapter(private val deleteClick: (Task) -> Unit) : Adapter<TaskAdapter
         ItemTaskBinding
     ) : ViewHolder(binding.root) {
         fun bind(task: Task) {
+            itemView.setOnClickListener {
+                onClick(task)
+            }
             binding.tvTitle.text = task.title
             binding.tvDesc.text = task.desc
             binding.itemView.setOnLongClickListener {
-                deleteClick(task)
+                //deleteClick(task)
                 false
 
             }
         }
-    }
+
+          }
 }

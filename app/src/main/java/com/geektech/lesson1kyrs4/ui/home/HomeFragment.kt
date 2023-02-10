@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.geektech.lesson1kyrs4.App
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = TaskAdapter(this::deleteClick)
+        adapter = TaskAdapter(this::onClick)
     }
 
     override fun onCreateView(
@@ -91,11 +92,17 @@ class HomeFragment : Fragment() {
         alertDialog.create().show()
     }
 
+    private fun onClick(task: Task ){
+        findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToTaskFragment(task))
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
+
 
 
 

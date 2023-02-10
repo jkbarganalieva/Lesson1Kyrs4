@@ -1,6 +1,7 @@
 package com.geektech.lesson1kyrs4
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
@@ -9,8 +10,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.geektech.lesson1kyrs4.data.Pref
 import com.geektech.lesson1kyrs4.databinding.ActivityMainBinding
+import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pref = Pref(this)
-        auth=FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -30,12 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-
-//        if (auth.currentUser == null) {
-//            navController.navigate(R.id.authFragment)
-//        }
-//        if (!pref.isUserSeen())
-//            navController.navigate(R.id.onBoardingFragment)
+        if (auth.currentUser == null) {
+            navController.navigate(R.id.authFragment)
+        }
+        if (!pref.isUserSeen())
+            navController.navigate(R.id.onBoardingFragment)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -46,6 +48,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.taskFragment
             )
         )
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {task->
+            Log.e("ololo","onCreate: "+task.result)
+        }
+       //FirebaseMessaging.getInstance().token.addOnCompleteListener {task->
+           //Log.e("ololo","onCreate: "+task.result)
+       // }
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         val bottomNavigationFragment = arrayListOf(
@@ -67,3 +77,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+
